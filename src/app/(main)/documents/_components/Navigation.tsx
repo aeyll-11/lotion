@@ -9,7 +9,6 @@ export default function Navigation(): JSX.Element {
   const navbarRef = useRef<ElementRef<"div">>(null);
 
   const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
-  const [isResetting, setIsResetting] = useState<boolean>(false);
   const [isHovering, setIsHovering] = useState<boolean>(false);
 
   const handleMouseLeave = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -74,7 +73,7 @@ export default function Navigation(): JSX.Element {
       <div
         ref={navbarRef}
         className={classNameMerge(
-          isResetting && "transition-all ease-in-out duration-300"
+          "transition-all ease-in-out duration-300"
         )}
       >
         <nav className="w-full px-3 py-2">
@@ -86,7 +85,8 @@ export default function Navigation(): JSX.Element {
             {!isNavOpen ? (
               <MenuIcon className="h-5 w-5 opacity-50" role="button" />
             ) : (
-              <ChevronsRight className="h-5 w-5 opacity-50" role="button" />
+              <ChevronsRight
+                className="h-5 w-5 opacity-50" role="button" />
             )}
           </div>
         </nav>
