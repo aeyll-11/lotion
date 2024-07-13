@@ -12,7 +12,13 @@ const config: Config = {
         100: "#FFFFFF",
         200: "#F7F6F3",
         300: "#E8E7E3",
+        400: "#A19F9A",
+        800: "#191919"
       },
+      'text' : {
+        'default': "#37352F",
+        "grey": "#9B9A97"
+      }
     },
     extend: {
       backgroundImage: {
