@@ -25,3 +25,13 @@ body {
     text-wrap: balance;
   }
 }
+
+@layer base {
+  html {
+    @apply text-text-default;
+  }
+
+  *:focus {
+    outline: none;
+  }
+}
