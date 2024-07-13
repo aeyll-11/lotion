@@ -31,8 +31,17 @@ export default function Navigation(): JSX.Element {
 
   useEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
+      if (event.clientX < 20 && !isNavOpen) {
+        setIsNavOpen(true);
+        setIsHovering(true);
+        if (sidebarRef.current) {
+          sidebarRef.current.style.transform = "translateX(0)";
+        }
+      }
+
       if (isNavOpen && sidebarRef.current) {
         const sidebarWidth = sidebarRef.current.getBoundingClientRect().width;
+
         if (event.clientX > sidebarWidth) {
           setIsNavOpen(false);
           setIsHovering(false);
