@@ -1,8 +1,8 @@
 "use client";
 
+import { classNameMerge } from "@/utils/classNameMerge";
 import { ChevronsRight, MenuIcon } from "lucide-react";
 import { useEffect, useRef, useState, type ElementRef } from "react";
-import { classNameMerge } from "../../../../../utils/classNameMerge";
 
 export default function Navigation(): JSX.Element {
   const sidebarRef = useRef<ElementRef<"aside">>(null);
