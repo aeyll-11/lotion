@@ -11,11 +11,11 @@ export default function Navigation(): JSX.Element {
   const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
   const [isHovering, setIsHovering] = useState<boolean>(false);
 
-  const handleMouseLeave = (event: React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseLeave = () => {
     setIsHovering(false);
   };
 
-  const handleMouseOver = (event: React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseOver = () => {
     setIsHovering(true);
   };
 
