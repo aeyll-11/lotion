@@ -6,46 +6,58 @@ import { useSelector } from 'react-redux';
 
 export default function EditNickname() {
   const user = useSelector((state: RootState) => state.user);
+  const [nickname, setNickName] = useState<string>(user.nickname);
+  const [modalPosition, setModalPosition] = useState<{ top: number; left: number }>({ top: 0, left: 0 });
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const dialogRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [modalPosition, setModalPosition] = useState<{ top: number; left: number }>({ top: 0, left: 0 });
 
   const dispatch = useAppDispatch();
 
   const toggleModal = (): void => {
     setIsOpen(!isOpen);
-    if (!isOpen && dialogRef.current) {
-      const rect = dialogRef.current.getBoundingClientRect();
-      setModalPosition({ top: rect.bottom, left: rect.left });
+  };
+
+  const handleKeyDown: KeyboardEventHandler<HTMLDivElement> = (event) => {
+    if (dialogRef.current) {
+      if (nickname.length === 0) {
+        setNickName(user.nickname)
+      }
+      if (event.code === 'Enter' || event.code === "Escape") {
+        setIsOpen(false);
+        dispatch(editNickName(nickname))
+      }
     }
   };
 
   useEffect(() => {
+    if (!isOpen && dialogRef.current) {
+      const rect = dialogRef.current.getBoundingClientRect();
+      setModalPosition({ top: rect.bottom, left: rect.left });
+    }
+
+    if (nickname.length === 0) {
+      setNickName(user.nickname);
+    }
+  }, [isOpen, nickname]);
+
+  useEffect(() => {
     const handleResize = () => {
-      if (dialogRef.current) {
+      if (dialogRef.current && isOpen) {
         const rect = dialogRef.current.getBoundingClientRect();
         setModalPosition({ top: rect.bottom, left: rect.left });
       }
     };
+
+    if (isOpen && inputRef.current) {
+      inputRef.current.focus();
+    }
 
     window.addEventListener('resize', handleResize);
     return () => {
       window.removeEventListener('resize', handleResize);
     };
   }, [isOpen]);
-
-  useEffect(() => {
-    if (isOpen && inputRef.current) {
-      inputRef.current.focus();
-    }
-  }, [isOpen]);
-
-  const handleKeyDown: KeyboardEventHandler<HTMLDivElement> = (event) => {
-    if (dialogRef.current) {
-      if (event.code === 'Enter') setIsOpen(false);
-    }
-  };
 
   return (
     <div
@@ -55,8 +67,8 @@ export default function EditNickname() {
       onKeyDown={handleKeyDown}
       className="hover:bg-default-300 rounded px-2 cursor-pointer relative select-none"
     >
-      {user.nickname}
-      <Dialog open={isOpen} onClose={() => setIsOpen(false)}>
+      {nickname}
+      <Dialog open={isOpen} onClose={() => setIsOpen(prevIsOpen => !prevIsOpen)}>
         <div
           style={{ top: modalPosition.top + 10, left: modalPosition.left }}
           className="absolute flex flex-col gap-1 border rounded p-2 border-default-300 shadow-md font-normal text-sm min-w-64 bg-white"
@@ -64,9 +76,10 @@ export default function EditNickname() {
           <Dialog.Title className="text-text-grey">Edit nickname</Dialog.Title>
           <Dialog.Actions>
             <input
+              ref={inputRef}
               className="p-1 w-full bg-default-200 border rounded border-default-300"
               placeholder={user.nickname}
-              onChange={(e) => dispatch(editNickName(e.target.value))}
+              onChange={(e) => setNickName(e.target.value)}
             />
           </Dialog.Actions>
         </div>
