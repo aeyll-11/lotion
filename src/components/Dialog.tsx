@@ -1,3 +1,4 @@
+
 interface Props {
   open: boolean,
   onClose: () => void,
@@ -5,12 +6,11 @@ interface Props {
 }
 
 const Dialog = ({ open, onClose, children }: Props) => {
-  if (!open) {
-    return null;
-  }
-
   return (
-    <div className="fixed flex justify-center items-center inset-0" onClick={onClose}>
+    <div
+      className="fixed flex justify-center items-center inset-0 transition ease-in-out duration-300"
+      style={{ opacity: open ? 1 : 0, visibility: open ? 'visible' : 'hidden' }} onClick={onClose}
+    >
       <div onClick={(e) => e.stopPropagation()}>
         {children}
       </div>
