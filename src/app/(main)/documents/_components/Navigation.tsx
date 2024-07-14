@@ -49,10 +49,23 @@ export default function Navigation(): JSX.Element {
       }
     };
 
+    const handleMouseOut = (event: MouseEvent) => {
+      const fromElement = event.relatedTarget as HTMLElement;
+      if (!fromElement || fromElement.nodeName === "HTML") {
+        // Mouse moved outside the window
+        setIsNavOpen(false);
+        setIsHovering(false);
+        if (sidebarRef.current) {
+          sidebarRef.current.style.transform = "translateX(-100%)";
+        }
+      }
+    };
     window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mouseout', handleMouseOut);
 
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseout', handleMouseOut);
     };
   }, [isNavOpen]);
 
