@@ -23,9 +23,13 @@ export default function EditNickname() {
       if (nickname.length === 0) {
         setNickName(user.nickname)
       }
-      if (event.code === 'Enter' || event.code === "Escape") {
+      if (event.code === 'Enter') {
         setIsOpen(false);
         dispatch(editNickName(nickname))
+      }
+      if (event.code === "Escape") {
+        setIsOpen(false)
+        setNickName(user.nickname)
       }
     }
   };

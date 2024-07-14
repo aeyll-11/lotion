@@ -1,6 +1,6 @@
+import { User } from "@/interface/user.interface";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { v4 as uuid } from 'uuid';
-import { User } from "../../../interface/user.interface";
 
 const initialState: User = {
   id: uuid(),
