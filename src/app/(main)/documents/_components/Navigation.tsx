@@ -51,11 +51,11 @@ export default function Navigation(): JSX.Element {
 
     const handleMouseOut = (event: MouseEvent) => {
       const fromElement = event.relatedTarget as HTMLElement;
-      if (!fromElement || fromElement.nodeName === "HTML") {
+      if (!fromElement) {
         // Mouse moved outside the window
-        setIsNavOpen(false);
-        setIsHovering(false);
         if (sidebarRef.current) {
+          setIsNavOpen(false);
+          setIsHovering(false);
           sidebarRef.current.style.transform = "translateX(-100%)";
         }
       }
