@@ -1,4 +1,4 @@
-import EditNickname from "./EditNickname";
+import EditNickname from './EditNickname';
 
 function Welcome() {
   const currentHour = new Date().getHours();
@@ -14,10 +14,10 @@ function Welcome() {
 
 export default function Welcoming() {
   return (
-    <div className="flex flex-col sm:flex-row justify-center items-center text-3xl font-semibold py-10">
+    <div className="flex flex-col items-center justify-center py-10 text-3xl font-semibold sm:flex-row">
       <Welcome />
       &nbsp;
       <EditNickname />
     </div>
-  )
+  );
 }

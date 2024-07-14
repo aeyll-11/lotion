@@ -7,7 +7,10 @@ import { useSelector } from 'react-redux';
 export default function EditNickname() {
   const user = useSelector((state: RootState) => state.user);
   const [nickname, setNickName] = useState<string>(user.nickname);
-  const [modalPosition, setModalPosition] = useState<{ top: number; left: number }>({ top: 0, left: 0 });
+  const [modalPosition, setModalPosition] = useState<{ top: number; left: number }>({
+    top: 0,
+    left: 0,
+  });
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const dialogRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -21,15 +24,15 @@ export default function EditNickname() {
   const handleKeyDown: KeyboardEventHandler<HTMLDivElement> = (event) => {
     if (dialogRef.current) {
       if (nickname.length === 0) {
-        setNickName(user.nickname)
+        setNickName(user.nickname);
       }
       if (event.code === 'Enter') {
         setIsOpen(false);
-        dispatch(editNickName(nickname))
+        dispatch(editNickName(nickname));
       }
-      if (event.code === "Escape") {
-        setIsOpen(false)
-        setNickName(user.nickname)
+      if (event.code === 'Escape') {
+        setIsOpen(false);
+        setNickName(user.nickname);
       }
     }
   };
@@ -43,7 +46,7 @@ export default function EditNickname() {
     if (nickname.length === 0) {
       setNickName(user.nickname);
     }
-  }, [isOpen, nickname]);
+  }, [isOpen, nickname, user]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -69,19 +72,19 @@ export default function EditNickname() {
       role="button"
       onClick={toggleModal}
       onKeyDown={handleKeyDown}
-      className="hover:bg-default-300 rounded px-2 cursor-pointer relative select-none"
+      className="relative cursor-pointer select-none rounded px-2 hover:bg-default-300"
     >
       {nickname}
-      <Dialog open={isOpen} onClose={() => setIsOpen(prevIsOpen => !prevIsOpen)}>
+      <Dialog open={isOpen} onClose={() => setIsOpen((prevIsOpen) => !prevIsOpen)}>
         <div
           style={{ top: modalPosition.top + 10, left: modalPosition.left }}
-          className="absolute flex flex-col gap-1 border rounded p-2 border-default-300 shadow-md font-normal text-sm min-w-64 bg-white"
+          className="bg-white absolute flex min-w-64 flex-col gap-1 rounded border border-default-300 p-2 text-sm font-normal shadow-md"
         >
           <Dialog.Title className="text-text-grey">Edit nickname</Dialog.Title>
           <Dialog.Actions>
             <input
               ref={inputRef}
-              className="p-1 w-full bg-default-200 border rounded border-default-300"
+              className="w-full rounded border border-default-300 bg-default-200 p-1"
               placeholder={user.nickname}
               onChange={(e) => setNickName(e.target.value)}
             />

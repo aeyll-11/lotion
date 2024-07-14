@@ -1,10 +1,11 @@
-"use client";
+'use client';
 
-import { Inter } from "next/font/google";
-import "./globals.css";
-import ReduxProvider from "./provider";
+import { Inter } from 'next/font/google';
+import React from 'react';
+import './globals.css';
+import ReduxProvider from './provider';
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] });
 
 export default function RootLayout({
   children,
@@ -14,9 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ReduxProvider>
-          {children}
-        </ReduxProvider>
+        <ReduxProvider>{children}</ReduxProvider>
       </body>
     </html>
   );
