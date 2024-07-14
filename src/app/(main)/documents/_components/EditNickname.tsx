@@ -1,4 +1,5 @@
 import Dialog from '@/components/Dialog';
+import Tooltip from '@/components/Tooltip';
 import { RootState, useAppDispatch } from '@/lib/store/store';
 import { editNickName } from '@/lib/store/user.store';
 import { KeyboardEventHandler, useEffect, useRef, useState } from 'react';
@@ -47,7 +48,7 @@ export default function EditNickname() {
       setNickName(user.nickname);
     }
   }, [isOpen, nickname, user]);
-
+ 
   useEffect(() => {
     const handleResize = () => {
       if (dialogRef.current && isOpen) {
@@ -67,30 +68,32 @@ export default function EditNickname() {
   }, [isOpen]);
 
   return (
-    <div
-      ref={dialogRef}
-      role="button"
-      onClick={toggleModal}
-      onKeyDown={handleKeyDown}
-      className="relative cursor-pointer select-none rounded px-2 hover:bg-default-300"
-    >
-      {nickname}
-      <Dialog open={isOpen} onClose={() => setIsOpen((prevIsOpen) => !prevIsOpen)}>
-        <div
-          style={{ top: modalPosition.top + 10, left: modalPosition.left }}
-          className="bg-white absolute flex min-w-64 flex-col gap-1 rounded border border-default-300 p-2 text-sm font-normal shadow-md"
-        >
-          <Dialog.Title className="text-text-grey">Edit nickname</Dialog.Title>
-          <Dialog.Actions>
-            <input
-              ref={inputRef}
-              className="w-full rounded border border-default-300 bg-default-200 p-1"
-              placeholder={user.nickname}
-              onChange={(e) => setNickName(e.target.value)}
-            />
-          </Dialog.Actions>
-        </div>
-      </Dialog>
-    </div>
+    <Tooltip text='Edit nickname' shouldNotDisplay={!isOpen}>
+      <div
+        ref={dialogRef}
+        role="button"
+        onClick={toggleModal}
+        onKeyDown={handleKeyDown}
+        className="relative cursor-pointer select-none rounded px-2 hover:bg-default-300"
+      >
+        {nickname}
+        <Dialog open={isOpen} onClose={() => setIsOpen((prevIsOpen) => !prevIsOpen)}>
+          <div
+            style={{ top: modalPosition.top + 10, left: modalPosition.left }}
+            className="bg-white absolute flex min-w-64 flex-col gap-1 rounded border border-default-300 p-2 text-sm font-normal shadow-md"
+          >
+            <Dialog.Title className="text-text-grey">Edit nickname</Dialog.Title>
+            <Dialog.Actions>
+              <input
+                ref={inputRef}
+                className="w-full rounded border border-default-300 bg-default-200 p-1"
+                placeholder={user.nickname}
+                onChange={(e) => setNickName(e.target.value)}
+              />
+            </Dialog.Actions>
+          </div>
+        </Dialog>
+      </div>
+    </Tooltip>
   );
 }
