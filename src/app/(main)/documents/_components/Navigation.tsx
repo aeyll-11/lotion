@@ -74,7 +74,7 @@ export default function Navigation(): JSX.Element {
       <aside
         ref={sidebarRef}
         className={classNameMerge(
-          'bg-white fixed top-52 flex h-fit w-[240px] flex-col rounded p-4 shadow-md transition-transform duration-300',
+          'fixed top-52 z-30 flex h-fit w-[240px] flex-col rounded bg-default-100 p-4 shadow-md transition-transform duration-300',
           !isNavOpen && 'translate-x-full',
         )}
         style={{ transform: isNavOpen ? 'translateX(0)' : 'translateX(-100%)' }}
@@ -89,6 +89,7 @@ export default function Navigation(): JSX.Element {
             onMouseLeave={handleMouseLeave}
             onMouseOver={handleMouseOver}
             className="rounded p-1 hover:bg-default-300"
+            role="button"
           >
             {!isNavOpen ? (
               <MenuIcon className="h-5 w-5 opacity-50" role="button" />

@@ -18,6 +18,7 @@ const config: Config = {
       text: {
         default: '#37352F',
         grey: '#9B9A97',
+        green: '#33691D',
       },
     },
     extend: {

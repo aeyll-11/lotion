@@ -9,7 +9,7 @@ interface Props {
   setNewIcon: (newIcon: string) => void;
 }
 
-export default function IconPicker({setNewIcon}: Props) {
+export default function IconPicker({ setNewIcon }: Props) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const dialogRef = useRef<SVGSVGElement>(null);
   const [modalPosition, setModalPosition] = useState<{ top: number; left: number }>({
@@ -30,7 +30,7 @@ export default function IconPicker({setNewIcon}: Props) {
 
   return (
     <>
-      <Plus ref={dialogRef}  onClick={() => setIsOpen(true)} className='h-4 w-4 cursor-pointer' />
+      <Plus ref={dialogRef} onClick={() => setIsOpen(true)} className="h-4 w-4 cursor-pointer" />
       <Dialog open={isOpen} onClose={() => setIsOpen(false)}>
         <div className="absolute" style={{ top: modalPosition.top, left: modalPosition.left }}>
           <EmojiPicker onEmojiClick={handleEmojiClick} />
