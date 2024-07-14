@@ -1,15 +1,11 @@
 import { User } from '@/interface/user.interface';
+import { user } from '@/utils/user';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { v4 as uuid } from 'uuid';
 
-const initialState: User = {
-  id: uuid(),
-  firstName: 'Aeyll',
-  lastName: 'Lo',
-  nickname: 'Aeyll lo',
-};
+const initialState: User = user;
+
 const userSlice = createSlice({
-  name: 'auth',
+  name: 'user',
   initialState,
   reducers: {
     editNickName(state, action: PayloadAction<string>) {

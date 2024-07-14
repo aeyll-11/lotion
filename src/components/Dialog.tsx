@@ -9,7 +9,7 @@ interface Props {
 const Dialog = ({ open, onClose, children }: Props) => {
   return (
     <div
-      className="fixed inset-0 flex items-center justify-center transition duration-300 ease-in-out"
+      className="fixed inset-0 transition duration-300 ease-in-out"
       style={{ opacity: open ? 1 : 0, visibility: open ? 'visible' : 'hidden' }}
       onClick={onClose}
     >

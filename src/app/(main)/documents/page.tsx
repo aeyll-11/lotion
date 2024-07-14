@@ -3,7 +3,7 @@
 import Navigation from './_components/Navigation';
 import Welcoming from './_components/Welcoming';
 
-export default function Document() {
+export default function Documents() {
   return (
     <div className="flex w-full">
       <Navigation />

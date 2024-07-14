@@ -48,7 +48,7 @@ export default function EditNickname() {
       setNickName(user.nickname);
     }
   }, [isOpen, nickname, user]);
- 
+
   useEffect(() => {
     const handleResize = () => {
       if (dialogRef.current && isOpen) {
@@ -68,7 +68,7 @@ export default function EditNickname() {
   }, [isOpen]);
 
   return (
-    <Tooltip text='Edit nickname' shouldNotDisplay={!isOpen}>
+    <Tooltip text="Edit nickname" shouldNotDisplay={!isOpen}>
       <div
         ref={dialogRef}
         role="button"
@@ -80,7 +80,7 @@ export default function EditNickname() {
         <Dialog open={isOpen} onClose={() => setIsOpen((prevIsOpen) => !prevIsOpen)}>
           <div
             style={{ top: modalPosition.top + 10, left: modalPosition.left }}
-            className="bg-white absolute flex min-w-64 flex-col gap-1 rounded border border-default-300 p-2 text-sm font-normal shadow-md"
+            className="bg-white absolute min-w-64 flex-col gap-1 rounded border border-default-300 p-2 text-sm font-normal shadow-md"
           >
             <Dialog.Title className="text-text-grey">Edit nickname</Dialog.Title>
             <Dialog.Actions>
