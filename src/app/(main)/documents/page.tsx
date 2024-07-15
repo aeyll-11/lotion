@@ -67,6 +67,7 @@ export default function Documents() {
           </Dialog>
         )}
         <Editor
+          id='1'
           apiKey="wwk5s3et1gojgcoxaykysgpujnneiu8n8dfbs4c1ygdhb7hq"
           initialValue="<p>This is the initial content of the editor.</p>"
           onEditorChange={handleChange}
