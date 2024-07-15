@@ -12,7 +12,9 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.6",
+    "@tinymce/tinymce-react": "^5.1.1",
     "@typescript-eslint/eslint-plugin": "^7.16.0",
+    "axios": "^1.7.2",
     "clsx": "^2.1.1",
     "emoji-picker-react": "^4.11.1",
     "lucide-react": "^0.408.0",
